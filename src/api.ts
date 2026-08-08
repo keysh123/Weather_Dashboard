@@ -20,6 +20,28 @@
 //   return result.json();
 // }
 
+// import { WeatherResponseSchema } from "./schemas/weatherSchema";
+
+// export async function getWeather({
+//   lat,
+//   lon,
+// }: {
+//   lat: number;
+//   lon: number;
+// }) {
+//   const result = await fetch(
+//     `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,weather_code,wind_speed_10m&hourly=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset&temperature_unit=fahrenheit&timezone=auto`
+//   );
+
+//   if (!result.ok) {
+//     throw new Error("Failed to fetch weather");
+//   }
+
+//   const data = await result.json();
+
+//   return WeatherResponseSchema.parse(data);
+// }
+
 import { WeatherResponseSchema } from "./schemas/weatherSchema";
 
 export async function getWeather({
@@ -30,7 +52,7 @@ export async function getWeather({
   lon: number;
 }) {
   const result = await fetch(
-    `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,weather_code,wind_speed_10m&hourly=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset&temperature_unit=fahrenheit&timezone=auto`
+    `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,weather_code,wind_speed_10m,wind_direction_10m,cloud_cover,surface_pressure&hourly=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max&temperature_unit=fahrenheit&timezone=auto`
   );
 
   if (!result.ok) {
