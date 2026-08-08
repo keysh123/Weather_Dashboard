@@ -9,13 +9,18 @@ import Cloud from "../../assets/cloud.svg?react";
 import Uv from "../../assets/uv.svg?react";
 import Wind from "../../assets/wind.svg?react";
 import Pressure from "../../assets/pressure.svg?react";
+import type { Coords } from "../../types";
 
-type Props = {};
+type Props = {
+    coords:Coords,
+  
+};
 
-export const AdditionalInfo = ({}: Props) => {
+
+export const AdditionalInfo = ({coords}: Props) => {
   const { data } = useSuspenseQuery({
-    queryKey: ["weather"],
-    queryFn: () => getWeather({ lat: 50, lon: 50 }),
+    queryKey: ["weather",coords],
+    queryFn: () => getWeather({ lat: coords.lat, lon: coords.lon }),
   });
 
   return (

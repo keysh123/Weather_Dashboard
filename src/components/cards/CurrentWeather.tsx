@@ -3,14 +3,17 @@ import React from "react";
 import { getWeather } from "../../api";
 import { Card } from "./Card";
 import { getWeatherDescription, getWeatherIcon } from "../../utils/HelperFunctions";
+import type { Coords } from "../../types";
 
 
-type Props = {};
+type Props = {
+    coords:Coords
+};
 
-export const CurrentWeather = ({}: Props) => {
+export const CurrentWeather = ({coords}: Props) => {
   const { data } = useSuspenseQuery({
-    queryKey: ["weather"],
-    queryFn: () => getWeather({ lat: 50, lon: 50 }),
+    queryKey: ["weather" , coords],
+    queryFn: () => getWeather({ lat: coords.lat, lon: coords.lon }),
   });
 
   const localTime = new Intl.DateTimeFormat("en-US", {
