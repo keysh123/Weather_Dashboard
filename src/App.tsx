@@ -8,6 +8,7 @@ import { AdditionalInfo } from "./components/cards/AdditionalInfo"
 import { Map } from "./components/Map"
 import { useState } from "react"
 import type {Coords}  from "./types"
+import { LocationDropdown } from "./components/dropdown/LocationDropdown"
 function App() {
   const onMapClick = (lat:number , lon:number) => {
     setCoords({lat,lon})
@@ -18,6 +19,7 @@ function App() {
     <>
     <div className="flex flex-col gap-8">
      {/* {JSON.stringify(data)} */}
+     <LocationDropdown/>
      <Map coords={coords} onMapClick={onMapClick}/>
      <CurrentWeather coords={coords}/>
      <HourlyForecast coords={coords}/>

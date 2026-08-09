@@ -12,7 +12,7 @@ export const Map = ({coords, onMapClick}: Props) => {
     const {lat,lon} = coords;
 
   return (
-    <MapContainer center={[lat, lon]} zoom={5} style={{height:'500px' , width:'700px' }} >
+    <MapContainer  className="z-0" center={[lat, lon]} zoom={5} style={{height:'500px' , width:'700px' }} >
         <MapClick onMapClick={onMapClick}/>
   <TileLayer
     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
