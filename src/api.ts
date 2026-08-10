@@ -1,5 +1,6 @@
-// // const API_KEY = import.meta.env.VITE_API_KEY
+const API_KEY = import.meta.env.VITE_API_KEY
 
+import { GeocodeSchema } from "./schemas/geoCodeSchema";
 // // export async function getWeather({lat,lon} : {lat :number , lon : number}){
 // //     const result = await fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,alerts&appid=${API_KEY}`);
 // //     const data = await result.json();
@@ -62,4 +63,21 @@ export async function getWeather({
   const data = await result.json();
 
   return WeatherResponseSchema.parse(data);
+}
+export async function getGeoCode(
+  location
+: 
+  string | null
+) {
+  const result = await fetch(
+    `http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=1&appid=${API_KEY}`
+  );
+
+  if (!result.ok) {
+    throw new Error("Failed to fetch weather");
+  }
+
+  const data = await result.json();
+
+  return GeocodeSchema.parse(data);
 }
