@@ -15,6 +15,7 @@ import { CurrentSkeleton } from "./components/skeletons/CurrentSkeleton"
 import HourlySkeleton from "./components/skeletons/HourlySkeleton"
 import { DailySkeleton } from "./components/skeletons/DailySkeleton"
 import { AdditionalInfoSkeleton } from "./components/skeletons/AdditionalInfoSkeleton"
+import { SidePanel } from "./components/SidePanel"
 function App() {
   const onMapClick = (lat:number , lon:number) => {
     setCoords({lat,lon})
@@ -60,6 +61,7 @@ function App() {
      <AdditionalInfo coords={coords}/>
      </Suspense>
      </div>
+     <SidePanel coords={coords}/>
     </>
   )
 }

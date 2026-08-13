@@ -1,5 +1,6 @@
 const API_KEY = import.meta.env.VITE_API_KEY
 
+import { AirPollutionSchema } from "./schemas/airPollutionSchema";
 import { GeocodeSchema } from "./schemas/geoCodeSchema";
 // // export async function getWeather({lat,lon} : {lat :number , lon : number}){
 // //     const result = await fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,alerts&appid=${API_KEY}`);
@@ -80,4 +81,23 @@ export async function getGeoCode(
   const data = await result.json();
 
   return GeocodeSchema.parse(data);
+}
+export async function getAirPollution({
+  lat,
+  lon,
+}: {
+  lat: number;
+  lon: number;
+}) {
+  const result = await fetch(
+    `http://api.openweathermap.org/data/2.5/air_pollution/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}`
+  );
+
+  if (!result.ok) {
+    throw new Error("Failed to fetch weather");
+  }
+
+  const data = await result.json();
+
+  return AirPollutionSchema.parse(data);
 }
